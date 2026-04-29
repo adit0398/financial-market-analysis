@@ -1,76 +1,69 @@
-# Financial Market Analysis Dashboard
+Financial Market Analysis
 
-**Tech Stack:** Python | NumPy | Pandas | openpyxl (Advanced Excel) | Power BI
+This project simulates stock market data and performs financial analysis using Python. It also includes an interactive Power BI dashboard built on top of the processed data.
 
-## Project Structure
-
-```
+Tech Stack
+Python
+NumPy
+Pandas
+Power BI
+Project Structure
 financial_market_analysis/
-├── data_generator.py        ← Step 1: Synthetic OHLCV data (NumPy GBM simulation)
-├── analysis.py              ← Step 2: EDA + technical indicators (Pandas)
-├── excel_dashboard.py       ← Step 3: 6-sheet Excel dashboard (openpyxl)
-├── powerbi_guide.md         ← Step 4: Power BI setup & DAX measures
+├── data_generator.py    # Generates synthetic OHLCV data
+├── analysis.py          # Performs analysis and computes indicators
+├── powerbi_dashboard.pbix  # Power BI dashboard file
 └── README.md
-```
-
-## How to Run
-
-### Prerequisites
-```bash
-pip install pandas numpy openpyxl
-```
-
-### Run in order
-
-```bash
-# 1. Generate synthetic market data
+How to Run
+Install dependencies
+pip install pandas numpy
+Execute scripts
+# Step 1: Generate market data
 python data_generator.py
-# → raw_market_data.csv (2,520 rows × 7 columns)
+# Output: raw_market_data.csv
 
-# 2. Run EDA and compute indicators
+# Step 2: Run analysis
 python analysis.py
-# → analysis_output.csv   (2,520 rows with 15 columns)
-# → monthly_summary.csv   (monthly KPIs per ticker)
-# → correlation_matrix.csv
-# → volatility_summary.csv
+# Outputs:
+# - analysis_output.csv
+# - monthly_summary.csv
+# - correlation_matrix.csv
+# - volatility_summary.csv
+Power BI Dashboard
+Open the powerbi_dashboard.pbix file in Power BI Desktop
+Load the generated CSV files if required
+Use filters/slicers to explore different stocks and time periods
+Overview
 
-# 3. Build Excel dashboard
-python excel_dashboard.py
-# → financial_market_dashboard.xlsx (6 sheets)
+The project generates synthetic stock data and analyzes it to extract insights. The dataset is not real but is designed to behave similarly to actual market data.
 
-# 4. Power BI
-# Open Power BI Desktop and follow powerbi_guide.md
-```
-
-## What It Does
-
-### data_generator.py — NumPy
-- Simulates 2 years of daily OHLCV data for 5 NSE stocks
-- Uses **Geometric Brownian Motion** (industry-standard price model)
-- Generates realistic Volume spikes on high-volatility days
-
-### analysis.py — Pandas
-- Cleans and validates data (null checks, type enforcement)
-- Computes: **SMA-7, SMA-30, RSI-14, Bollinger Bands, Value Traded**
-- Produces monthly aggregations and annualised volatility
-- Outputs **correlation matrix** across all tickers
-
-### excel_dashboard.py — openpyxl (Advanced Excel)
-| Sheet           | Content                                              |
-|----------------|------------------------------------------------------|
-| Raw Data        | Full OHLCV + indicators with conditional formatting  |
-| Monthly Summary | Per-ticker monthly KPIs with colour scale            |
-| Price Chart     | Multi-series line chart of closing prices            |
-| RSI Chart       | RSI trend with 0–100 axis and overbought zones       |
-| Volatility      | Annualised volatility bar chart                      |
-| Correlation     | Heatmap-style correlation matrix                     |
-
-### Power BI
-- 4-page interactive report
-- DAX measures for Total Return, Avg RSI, Latest Price
-- Slicer-driven filtering by ticker and date range
-
-## Dataset Details
-- **Companies:** RELIANCE, TCS, INFY, HDFCBANK, WIPRO (synthetic, not real)
-- **Period:** Jan 2023 – Dec 2024 (~504 trading days)
-- **Rows:** 2,520 (504 days × 5 tickers)
+Data Generation
+Simulates 2 years of daily stock data
+Covers 5 stocks: RELIANCE, TCS, INFY, HDFCBANK, WIPRO
+Uses Geometric Brownian Motion for price simulation
+Generates Open, High, Low, Close, and Volume data
+Adds realistic volatility behavior
+Analysis
+Data cleaning and preprocessing
+Technical indicators:
+Moving Averages (7-day and 30-day)
+RSI (Relative Strength Index)
+Bollinger Bands
+Outputs:
+Monthly summaries
+Correlation matrix
+Annualised volatility
+Power BI Dashboard (Built by Me)
+Created a multi-page interactive dashboard using Power BI
+Visualizes stock trends, volatility, and indicator performance
+Includes slicers for filtering by ticker and date range
+Tracks key metrics like price trends, RSI, and overall performance
+Helps in quick comparison between different stocks
+Dataset Details
+Time Period: Jan 2023 – Dec 2024
+Total Records: 2,520
+Type: Synthetic (not real market data)
+Purpose
+Practice financial data analysis
+Work with time-series datasets
+Build end-to-end data projects
+Combine Python analysis with Power BI visualization
