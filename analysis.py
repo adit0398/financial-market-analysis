@@ -1,17 +1,4 @@
-"""
-analysis.py
------------
-Pandas-based EDA and analytics pipeline for stock market data.
-Reads raw_market_data.csv and produces analysis_output.csv.
 
-Metrics computed:
-  - Daily % Return
-  - 7-day & 30-day Simple Moving Average (SMA)
-  - 14-day Relative Strength Index (RSI)
-  - Bollinger Bands (20-day, 2 std dev)
-  - Daily Value Traded (Close x Volume)
-  - Monthly Summary (mean close, total volume, monthly return)
-"""
 
 import pandas as pd
 import numpy as np
@@ -65,7 +52,7 @@ monthly = (
     .reset_index()
 )
 
-# Monthly return = (last close - first close) / first close
+# Monthly return = (last close - first close) 
 monthly_ret = (
     df.groupby(["Ticker", "YearMonth"])["Close"]
     .agg(lambda x: round((x.iloc[-1] - x.iloc[0]) / x.iloc[0] * 100, 2))
@@ -81,7 +68,7 @@ corr  = pivot.corr().round(4)
 print("\n=== Close Price Correlation Matrix ===")
 print(corr)
 
-# ── Volatility Summary ────────────────────────────────────────────────────────
+# ── Volatility Summary ───
 volatility = (
     df.groupby("Ticker")["Daily_Return_Pct"]
     .agg(Annualised_Volatility=lambda x: round(x.std() * np.sqrt(252), 4))
@@ -90,7 +77,7 @@ volatility = (
 print("\n=== Annualised Volatility ===")
 print(volatility)
 
-# ── Save Outputs ───────────────────────────────────────────────────────────────
+# ── Save Outputs ──
 df.drop(columns=["YearMonth"]).to_csv("analysis_output.csv", index=False)
 monthly.to_csv("monthly_summary.csv", index=False)
 corr.to_csv("correlation_matrix.csv")
