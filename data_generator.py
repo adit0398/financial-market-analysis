@@ -1,9 +1,6 @@
 """
-data_generator.py
------------------
 Generates synthetic stock market data for 5 companies over 2 years
 using NumPy's random simulation (Geometric Brownian Motion model).
-
 Output: raw_market_data.csv
 """
 
@@ -13,7 +10,7 @@ from datetime import datetime, timedelta
 
 np.random.seed(42)
 
-# ── Configuration ──────────────────────────────────────────────────────────────
+# ── Configuration ─────
 COMPANIES = {
     "RELIANCE": {"start_price": 2400, "mu": 0.0003,  "sigma": 0.018},
     "TCS":      {"start_price": 3500, "mu": 0.00025, "sigma": 0.015},
